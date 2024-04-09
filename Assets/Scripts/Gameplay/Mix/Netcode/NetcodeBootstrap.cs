@@ -23,7 +23,7 @@ namespace Unity.MegacityMetro
         /// Limitation imposed to ensure UTP send/receiveQueueSize's are set appropriately.
         /// <see cref="MegacityMetroDriverConstructor"/>.
         /// </summary>
-        public const int MaxPlayerCount = 200;
+        public const int MaxPlayerCount = 500;
 
         // The initialize method is what entities calls to create the default worlds
         public override bool Initialize(string defaultWorldName)

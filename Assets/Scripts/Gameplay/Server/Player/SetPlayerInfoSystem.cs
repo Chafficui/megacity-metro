@@ -82,7 +82,9 @@ namespace Unity.MegacityMetro.Gameplay
         //TODO : Optimize for DOTS?
         public void OnUpdate(ref SystemState state)
         {
+
             var playersConnected = GetSingletonBuffer<PlayerConnectedElement>();
+            RestAPI.Instance.RegisterMetricMethod("players/online", () => playersConnected.Length);
             var commandBuffer = GetSingletonRW<BeginSimulationEntityCommandBufferSystem.Singleton>().ValueRW.CreateCommandBuffer(state.WorldUnmanaged);
             var names = GetSingletonBuffer<BotNameElement>().ToNativeArray(Allocator.TempJob);
 
