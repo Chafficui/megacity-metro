@@ -26,7 +26,7 @@ namespace Unity.MegacityMetro
         private const string HardcodedMultiplayServerIp = "192.168.200.";
 
         public static bool AutomaticallyAddThinClients => TargetThinClientWorldCount > 0;
-        public static bool AutomaticallyMatchmake => false;
+        public static bool AutomaticallyMatchmake => Application.isBatchMode;
         public static NetworkEndpoint MultiplayEndpoint { get; private set; }
         public static int TargetThinClientWorldCount { get; private set; }
         public static int MaxCarCount { get; private set; }

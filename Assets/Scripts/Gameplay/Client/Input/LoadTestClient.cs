@@ -1,6 +1,5 @@
 using System;
 using System.Threading;
-using Unity.Mathematics;
 using Unity.MegacityMetro.Gameplay;
 using Unity.MegacityMetro.UGS;
 using Unity.MegacityMetro.UI;

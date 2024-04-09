@@ -107,7 +107,7 @@ namespace Unity.MegacityMetro.UI
             if (_AutomaticMatchmakingTask != null && !_AutomaticMatchmakingTask.IsCompleted) return;
             Debug.Log("[CLI] Detected automatic matchmaking requested! Beginning matchmaking now...");
             OnMultiplayerButtonClicked();
-            _AutomaticMatchmakingTask = MultiplayerMenu.Instance.Matchmake();
+            MatchMakingConnector.Instance.ConnectToServer();
 #endif
         }
 
