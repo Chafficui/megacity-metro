@@ -79,38 +79,15 @@ namespace Unity.MegacityMetro.UGS
         public async Task Matchmake()
         {
             Debug.Log("Beginning Matchmaking.");
-            SetIPAndPort(null, 0);
             MatchMakingUI.Instance.UpdateConnectionStatus("[Matchmaker] Searching...");
-
-            if (string.IsNullOrEmpty(Application.cloudProjectId))
-            {
-                Debug.LogWarning($"To use Unity's dashboard services, " +
-                                 "you need to link your Unity project to a project ID. " +
-                                 "To do this, go to Project Settings to select your organization, " +
-                                 "select your project and then link a project ID. " +
-                                 "You also need to make sure your organization has access to the required products. " +
-                                 "Visit https://dashboard.unity3d.com to sign up.");
-
-                return;
-            }
 
             try
             {
-                var matchmakingResult = await m_Matchmaker.Matchmake(m_ProfileService.LocalPlayer);
-                if (matchmakingResult.result == MatchmakerPollingResult.Success)
-                {
-                    MatchMakingUI.Instance.UpdateConnectionStatus("[Matchmaker] Match found! Queued to join..."); 
-                    Debug.Log($"[Matchmaker] Matchmaking Success! Connecting to {IP} : {Port}");
-                    await Task.Delay(5000); // Hack: Give the server some time to process before connecting. This should be fixed!
-                    HasMatchmakingSuccess = true;
-                    MatchMakingUI.Instance.UpdateConnectionStatus($"[Netcode] Connecting to {IP} : {Port}...");
-                    ConnectToServer();
-                }
-                else
-                {
-                    MatchMakingUI.Instance.UpdateConnectionStatus($"[Matchmaker] {matchmakingResult.result}] - {matchmakingResult.resultMessage}");
-                    Debug.LogError($"[Matchmaker] {matchmakingResult.result}] - {matchmakingResult.resultMessage}");
-                }
+                MatchMakingUI.Instance.UpdateConnectionStatus("[Matchmaker] Match found! Queued to join..."); 
+                Debug.Log($"[Matchmaker] Matchmaking Success! Connecting to {IP} : {Port}");
+                await Task.Delay(5000); // Hack: Give the server some time to process before connecting. This should be fixed!
+                MatchMakingUI.Instance.UpdateConnectionStatus($"[Netcode] Connecting to {IP} : {Port}...");
+                ConnectToServer();
             }
             catch (Exception ex)
             {

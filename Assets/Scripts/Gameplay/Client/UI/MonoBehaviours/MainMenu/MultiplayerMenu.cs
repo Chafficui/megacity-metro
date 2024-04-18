@@ -160,17 +160,10 @@ namespace Unity.MegacityMetro.UI
 
         internal async Task Matchmake()
         {
-            if (MatchMakingConnector.Instance.IsInitialized)
-            {
-                MatchMakingConnector.Instance.SetProfileServiceName(m_NameTextField.text);
-                SetUIMatchmaking(true);
-                await MatchMakingConnector.Instance.Matchmake();
-                SetUIMatchmaking(false);
-            }
-            else
-            {
-                ModalWindow.Instance.Show("To use Unity's dashboard services, you need to link your Unity project to a project ID.", "OK");
-            }
+            MatchMakingConnector.Instance.SetProfileServiceName(m_NameTextField.text);
+            SetUIMatchmaking(true);
+            await MatchMakingConnector.Instance.Matchmake();
+            SetUIMatchmaking(false);
         }
 
         private void SetUIMatchmaking(bool matchmaking)

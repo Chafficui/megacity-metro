@@ -13,7 +13,7 @@ namespace CipSoft.LoadTest
         public MatchMakingConnector MatchMakingConnector;
         public MainMenu MainMenu;
         public static bool debug = false;
-        public static bool IsLoadTest = false;
+        public static bool IsLoadTest = true;
         private ushort port = 5010;
         private string ip = "192.168.200.229";
         private float millisecondsToWait = 0; 
@@ -61,16 +61,7 @@ namespace CipSoft.LoadTest
         {
             if (IsLoadTest)
             {
-                try
-                {
-                    MatchMakingConnector.Instance.SetProfileServiceName(BotNameGenerator.GetRandomName());
-                }
-                catch (Exception e)
-                {
-                    Debug.LogError("Error setting profile service name: " + e.Message);
-                }
                 MatchMakingConnector.Instance.ConnectToServer();
-                return;
             }
         }
 

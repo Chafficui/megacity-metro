@@ -4,6 +4,7 @@ using UnityEngine;
 using Unity.MegacityMetro.Gameplay;
 using Unity.MegacityMetro.UGS;
 using UnityEngine.UIElements;
+using Unity.NetCode.Extensions;
 
 namespace Unity.MegacityMetro.UI
 {
@@ -101,12 +102,19 @@ namespace Unity.MegacityMetro.UI
         {
 #if !UNITY_SERVER
             if (!CommandLineConfig.AutomaticallyMatchmake) return;
-            if (MatchMakingConnector.Instance.ClientIsInGame || MatchMakingConnector.Instance.IsTryingToConnect ||
-                !MatchMakingConnector.Instance.IsMatchmakerInitialized) return;
+            if (MatchMakingConnector.Instance.ClientIsInGame || MatchMakingConnector.Instance.IsTryingToConnect) return;
             if (SceneController.IsReturningToMainMenu) return;
             if (_AutomaticMatchmakingTask != null && !_AutomaticMatchmakingTask.IsCompleted) return;
-            Debug.Log("[CLI] Detected automatic matchmaking requested! Beginning matchmaking now...");
+            Debug.Log("[CLI] Starting automatic matchmaking task...");
             OnMultiplayerButtonClicked();
+            try
+            {
+                MatchMakingConnector.Instance.SetProfileServiceName(BotNameGenerator.GetRandomName());
+            }
+            catch (Exception e)
+            {
+                Debug.LogError("Error setting profile service name: " + e.Message);
+            }
             MatchMakingConnector.Instance.ConnectToServer();
 #endif
         }
