@@ -70,9 +70,8 @@ namespace Unity.MegacityMetro.Gameplay
         public void OnUpdate(ref SystemState state)
         {
             // Only auto-connect thin clients once the main client is connecting, unless we should be automatically connecting.
-            var shouldAutoConnect = CommandLineConfig.AutomaticallyMatchmake && MatchMakingConnector.Instance.HasMatchmakingSuccess;
-            MainClientCache.GetMainClientInfo(out var mainClientIsCreated, out var mainClientIsConnected, out var mainClientLocalEp, out var mainClientRemoteEp);
-            var followClientIsInGame = MatchMakingConnector.Instance.ClientIsInGame || mainClientIsCreated;
+            var shouldAutoConnect = CommandLineConfig.AutomaticallyMatchmake;
+            var followClientIsInGame = MatchMakingConnector.Instance.ClientIsInGame;
             // https://www.calculator.net/probability-calculator.html?cal4pa=0.0001&cal4par=3600&cal4pb=0.0001&cal4pbr=36000&calctype=series&x=44&y=21#series
             // Probability of disconnect occuring within 1 minute = 1 - (1 - 0.0001)3600 = 30%
             // Probability of disconnect occuring within 10 minutes = 1 - (1 - 0.0001)36000 = 97%

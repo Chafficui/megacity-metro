@@ -13,7 +13,7 @@ namespace CipSoft.LoadTest
         public MatchMakingConnector MatchMakingConnector;
         public MainMenu MainMenu;
         public static bool debug = false;
-        public static bool IsLoadTest = true;
+        public static bool IsLoadTest = false;
         private ushort port = 5010;
         private string ip = "192.168.200.229";
         private float millisecondsToWait = 0; 
