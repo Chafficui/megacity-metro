@@ -26,7 +26,7 @@ namespace Unity.MegacityMetro
             if (CommandLineConfig.AutomaticallyMatchmake && CommandLineConfig.AutomaticallyAddThinClients && Application.isBatchMode)
             {
                 Debug.Log("Not creating a ClientWorld or ServerWorld, as we're using the automatic flow for thin clients.");
-                return;
+                //return;
             }
 
             if (ClientServerBootstrap.RequestedPlayType == ClientServerBootstrap.PlayType.ClientAndServer)
