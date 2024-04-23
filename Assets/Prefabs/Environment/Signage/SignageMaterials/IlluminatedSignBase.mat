@@ -44,5 +44,5 @@ Material:
     - _Scanline: 1.2
     m_Colors:
     - _GroundFogColor: {r: 1, g: 0.029372733, b: 0, a: 1}
-    - _Time16: {r: 6.090225, g: 6.090225, b: 22.090225, a: 54.090225}
+    - _Time16: {r: 3.739685, g: 11.739685, b: 11.739685, a: 11.739685}
   m_BuildTextureStacks: []
