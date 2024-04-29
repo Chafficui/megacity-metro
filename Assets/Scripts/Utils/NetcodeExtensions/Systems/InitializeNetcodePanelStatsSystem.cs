@@ -13,11 +13,7 @@ namespace Unity.NetCode.Extensions
     {
         private EntityQuery m_LocalPlayerQuery;
         public void OnCreate(ref SystemState state)
-        {
-#if !(DEVELOPMENT_BUILD || UNITY_EDITOR)
-            state.Enabled = false;
-#endif
-            
+        {            
             m_LocalPlayerQuery = state.GetEntityQuery(ComponentType.ReadOnly<GhostOwner>(),
                                                       ComponentType.ReadOnly<GhostOwnerIsLocal>(),
                                                       ComponentType.ReadOnly<PlayerName>(),
